@@ -66,3 +66,4 @@ Ensure inbound traffic is allowed on both EC2 instances.
 2. Ping the **Private IPv4 Address** of the destination EC2 instance:
    ```bash
    ping -c 4 <PRIVATE_IP_OF_TARGET_EC2>
+
