@@ -8,8 +8,8 @@ This repository contains a comprehensive guide for setting up **VPC Peering** be
 
 ## 🏗️ Architecture Overview
 
-* **VPC A (`fir-st`):** CIDR `10.0.0.0/16` (Subnet: `10.0.1.0/24`)
-* **VPC B (`default`):** CIDR `172.31.0.0/16`
+* **VPC A (`first`):** CIDR `10.0.0.0/16` (Subnet: `10.0.1.0/24`)
+* **VPC B (`second`):** CIDR `172.31.0.0/16` (Subnet: `172.31.3.128/25`)
 * **Peering Connection:** `pcx-0947412334ffceb23`
 
 ---
@@ -18,7 +18,7 @@ This repository contains a comprehensive guide for setting up **VPC Peering** be
 
 1. Two AWS VPCs with **non-overlapping CIDR blocks**.
 2. At least one running EC2 instance in each VPC.
-3. IAM permissions to manage VPC Peering, Route Tables, and Security Groups.
+3. VPC Peering, Route Tables, and Security Groups.
 
 ---
 
@@ -27,7 +27,7 @@ This repository contains a comprehensive guide for setting up **VPC Peering** be
 ### 1. Create and Accept VPC Peering Connection
 1. Open the **AWS VPC Console** > **Peering connections**.
 2. Click **Create peering connection**.
-3. Select **VPC A (`fir-st`)** as Requester and **VPC B (`default`)** as Accepter.
+3. Select **VPC A (`first`)** as Requester and **VPC B (`second`)** as Accepter.
 4. Select the created Peering Connection and navigate to **Actions** > **Accept request**.
 5. Verify that the Peering Connection status is **Active**.
 
@@ -36,7 +36,7 @@ This repository contains a comprehensive guide for setting up **VPC Peering** be
 ### 2. Update Route Tables (Bidirectional Routing)
 For traffic to flow between both VPCs, route tables in both VPCs must point to the Peering Connection ID (`pcx-xxxxxxxx`).
 
-#### VPC A Route Table (`rtb-0d4c709bbf8f94d81`)
+#### VPC A Route Table (`rtb-0d4c709bbf8f94d81`)  
 | Destination | Target | Status |
 | :--- | :--- | :--- |
 | `172.31.0.0/16` (VPC B CIDR) | `pcx-0947412334ffceb23` | Active |
